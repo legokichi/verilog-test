@@ -1,0 +1,44 @@
+#! /usr/local/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7-8-g6183bf6)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0x7ff49af002b0 .scope module, "AND2TEST" "AND2TEST" 2 1;
+ .timescale 0 0;
+v0x7ff49af10610_0 .var "a", 0 0;
+v0x7ff49af106c0_0 .var "b", 0 0;
+v0x7ff49af10760_0 .net "out", 0 0, L_0x7ff49af10820; 1 drivers
+S_0x7ff49af003a0 .scope module, "bbb" "AND2" 2 6, 3 1, S_0x7ff49af002b0;
+ .timescale 0 0;
+L_0x7ff49af10820 .functor AND 1, v0x7ff49af10610_0, v0x7ff49af106c0_0, C4<1>, C4<1>;
+v0x7ff49af00480_0 .net "A", 0 0, v0x7ff49af10610_0; 1 drivers
+v0x7ff49af10500_0 .net "B", 0 0, v0x7ff49af106c0_0; 1 drivers
+v0x7ff49af10590_0 .alias "X", 0 0, v0x7ff49af10760_0;
+    .scope S_0x7ff49af002b0;
+T_0 ;
+    %vpi_call 2 9 "$dumpfile", "and2test.vcd";
+    %vpi_call 2 10 "$dumpvars", 1'sb0, S_0x7ff49af002b0;
+    %vpi_call 2 11 "$monitor", "%t: a = %b, b = %b, out = %b", $time, v0x7ff49af10610_0, v0x7ff49af106c0_0, v0x7ff49af10760_0;
+    %set/v v0x7ff49af10610_0, 0, 1;
+    %set/v v0x7ff49af106c0_0, 0, 1;
+    %delay 10, 0;
+    %set/v v0x7ff49af10610_0, 1, 1;
+    %delay 10, 0;
+    %set/v v0x7ff49af10610_0, 0, 1;
+    %set/v v0x7ff49af106c0_0, 1, 1;
+    %delay 10, 0;
+    %set/v v0x7ff49af10610_0, 1, 1;
+    %delay 10, 0;
+    %set/v v0x7ff49af10610_0, 0, 1;
+    %set/v v0x7ff49af106c0_0, 0, 1;
+    %delay 10, 0;
+    %vpi_call 2 17 "$finish";
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "and2test.v";
+    "and2.v";
